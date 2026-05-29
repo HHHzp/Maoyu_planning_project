@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "计划簿",
+    "navigationBarBackgroundColor": "#f7f4ed",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f4ed"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

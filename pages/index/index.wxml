@@ -1,0 +1,180 @@
+<view class="page">
+  <view class="hero">
+    <view class="topbar">
+      <view class="brand">
+        <text class="eyebrow">PLANBOOK</text>
+        <view class="title">把重要的事放回眼前</view>
+      </view>
+      <button class="today-btn" bindtap="jumpToday">今</button>
+    </view>
+
+    <view class="period-tabs" role="tablist">
+      <button
+        wx:for="{{periods}}"
+        wx:key="key"
+        class="period-tab {{activePeriod === item.key ? 'active' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="switchPeriod"
+      >
+        {{item.label}}
+      </button>
+    </view>
+
+    <view class="date-row">
+      <button class="icon-btn" bindtap="goPrev">‹</button>
+      <view class="date-copy">
+        <view class="date-title">{{rangeTitle}}</view>
+        <view class="date-subtitle">{{rangeHint}}</view>
+      </view>
+      <button class="icon-btn" bindtap="goNext">›</button>
+    </view>
+
+    <view class="summary">
+      <view class="summary-metric">
+        <text class="summary-number">{{progress}}%</text>
+        <text class="summary-label">完成进度</text>
+      </view>
+      <view class="summary-divider"></view>
+      <view class="summary-pair">
+        <view class="summary-chip">
+          <text class="chip-number">{{doneCount}}</text>
+          <text class="chip-label">完成</text>
+        </view>
+        <view class="summary-chip">
+          <text class="chip-number">{{openCount}}</text>
+          <text class="chip-label">待做</text>
+        </view>
+      </view>
+    </view>
+    <view class="progress-track">
+      <view class="progress-fill" style="width: {{progress}}%;"></view>
+    </view>
+  </view>
+
+  <view class="section plan-section">
+    <view class="section-head">
+      <text class="section-title">计划</text>
+      <text class="section-count">{{plans.length}} 项</text>
+    </view>
+
+    <view class="input-row">
+      <input
+        class="plan-input"
+        value="{{draftPlan}}"
+        placeholder="{{placeholder}}"
+        confirm-type="done"
+        bindinput="onPlanInput"
+        bindconfirm="addPlan"
+      />
+      <button class="add-btn" bindtap="addPlan">＋</button>
+    </view>
+
+    <view wx:if="{{plans.length === 0}}" class="empty">
+      <view class="empty-title">还没有计划</view>
+      <view class="empty-copy">先写下一件真正想推进的小事。</view>
+    </view>
+
+    <view wx:else class="plan-list">
+      <view wx:for="{{plans}}" wx:key="id" class="plan-row {{item.done ? 'is-done' : ''}}">
+        <checkbox
+          class="checkbox"
+          checked="{{item.done}}"
+          data-id="{{item.id}}"
+          bindtap="togglePlan"
+        />
+        <text class="plan-text {{item.done ? 'done' : ''}}">{{item.text}}</text>
+        <button class="delete-btn" data-id="{{item.id}}" bindtap="deletePlan">×</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="section checkin-section">
+    <view class="section-head checkin-head">
+      <view>
+        <text class="section-title">打卡</text>
+        <view class="checkin-date">{{checkinDateLabel}}</view>
+      </view>
+      <button class="checkin-btn {{isCheckedIn ? 'checked' : ''}}" bindtap="toggleCheckin">
+        {{isCheckedIn ? '已打卡' : '打卡'}}
+      </button>
+    </view>
+
+    <view class="checkin-stats">
+      <view class="checkin-stat">
+        <text class="checkin-number">{{streakCount}}</text>
+        <text class="checkin-label">连续天数</text>
+      </view>
+      <view class="checkin-stat">
+        <text class="checkin-number">{{checkinCount}}</text>
+        <text class="checkin-label">累计天数</text>
+      </view>
+      <view class="checkin-note">最近 26 周</view>
+    </view>
+
+    <scroll-view class="heatmap-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="heatmap">
+        <view class="month-row">
+          <view class="weekday-spacer"></view>
+          <view class="month-track">
+            <view
+              wx:for="{{heatmapWeeks}}"
+              wx:for-item="week"
+              wx:key="id"
+              wx:if="{{week.monthLabel}}"
+              class="month-label"
+              style="left: {{week.monthOffset}};"
+            >
+              {{week.monthLabel}}
+            </view>
+          </view>
+        </view>
+
+        <view class="heatmap-body">
+          <view class="weekday-col">
+            <view wx:for="{{weekdayLabels}}" wx:key="id" class="weekday-label">{{item.label}}</view>
+          </view>
+          <view class="week-cols">
+            <view
+              wx:for="{{heatmapWeeks}}"
+              wx:for-item="week"
+              wx:key="id"
+              class="week-col"
+            >
+              <view
+                wx:for="{{week.days}}"
+                wx:for-item="day"
+                wx:key="dateKey"
+                class="heat-cell level-{{day.level}}"
+                aria-label="{{day.label}} 完成 {{day.count}} 个任务"
+              ></view>
+            </view>
+          </view>
+        </view>
+
+        <view class="heatmap-legend">
+          <text>少</text>
+          <view
+            wx:for="{{legendLevels}}"
+            wx:key="*this"
+            class="legend-cell level-{{item}}"
+          ></view>
+          <text>多</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="section record-section">
+    <view class="section-head">
+      <text class="section-title">记录</text>
+      <text class="section-count">自动保存</text>
+    </view>
+    <textarea
+      class="record-box"
+      value="{{record}}"
+      placeholder="发生了什么？有什么值得留下？"
+      maxlength="1200"
+      bindinput="onRecordInput"
+    />
+  </view>
+</view>
