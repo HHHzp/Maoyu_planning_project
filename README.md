@@ -23,9 +23,13 @@
 
 将预览截图放到 `docs/images/` 后，GitHub 会自动展示下面的图片。
 
-<img src="docs/images/home.png" alt="首页截图" width="320" />
+<p align="center">
+  <img src="docs/images/home.png" alt="首页截图" width="240" />
+</p>
 
-<img src="docs/images/heatmap.png" alt="打卡热力图" width="320" />
+<p align="center">
+  <img src="docs/images/heatmap.png" alt="打卡热力图" width="240" />
+</p>
 
 ## 目录结构
 
