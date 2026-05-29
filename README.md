@@ -21,12 +21,11 @@
 
 ## 截图
 
-> 可在上传 GitHub 前将预览截图放到 `docs/images/`，然后替换下面的图片路径。
+将预览截图放到 `docs/images/` 后，GitHub 会自动展示下面的图片。
 
-```md
 ![首页截图](docs/images/home.png)
+
 ![打卡热力图](docs/images/heatmap.png)
-```
 
 ## 目录结构
 
