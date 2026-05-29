@@ -1,37 +1,37 @@
-# 猫鱼计划
+# Maoyu Plan
 
-一个清爽的个人计划与记录微信小程序，支持按日、周、月、年制定计划，记录复盘，并通过打卡热力图观察自己的持续行动。
+A clean WeChat Mini Program for personal planning, journaling, and habit tracking. It helps users plan by day, week, month, and year, record reflections, and review consistency through a GitHub-style activity heatmap.
 
-## 项目简介
+## Overview
 
-猫鱼计划是一个面向个人时间管理和目标追踪的小程序。它不是复杂的项目管理工具，而是更轻量的“日常计划簿”：用户可以快速写下当前周期的计划，勾选完成状态，留下复盘记录，并用类似 GitHub Contributions 的热力图查看近期行动轨迹。
+Maoyu Plan is a lightweight personal planning tool for time management and goal tracking. It is not meant to be a heavy project management system. Instead, it works like a simple daily planbook: write down plans for the current period, mark tasks as done, leave notes or reflections, and use the heatmap to see recent activity at a glance.
 
-## 功能特性
+## Features
 
-- 日 / 周 / 月 / 年四种计划视图
-- 前后切换时间周期，一键回到今天
-- 添加计划、勾选完成、删除计划
-- 每个周期独立保存复盘记录
-- 支持每日打卡与取消打卡
-- 最近 26 周打卡热力图
-- 热力图按每日完成任务数分为 5 档颜色
-- 自动统计累计打卡天数与连续打卡天数
-- 使用微信小程序本地缓存保存数据
-- 无后端依赖，导入即可运行
+- Daily, weekly, monthly, and yearly planning views
+- Navigate between time periods and quickly jump back to today
+- Add plans, mark them as complete, and delete them
+- Save independent reflection notes for each period
+- Daily check-in and check-out support
+- GitHub-style heatmap for the latest 26 weeks
+- Five heatmap intensity levels based on completed task count
+- Automatic total check-in count and current streak count
+- Local data storage with WeChat Mini Program storage APIs
+- No backend required; import and run directly
 
-## 截图
+## Screenshots
 
-将预览截图放到 `docs/images/` 后，GitHub 会自动展示下面的图片。
+Place preview images in `docs/images/`. GitHub will render them below.
 
 <p align="center">
-  <img src="docs/images/home.png" alt="首页截图" width="240" />
+  <img src="docs/images/home.png" alt="Home screen" width="240" />
 </p>
 
 <p align="center">
-  <img src="docs/images/heatmap.png" alt="打卡热力图" width="240" />
+  <img src="docs/images/heatmap.png" alt="Check-in heatmap" width="240" />
 </p>
 
-## 目录结构
+## Project Structure
 
 ```text
 .
@@ -49,41 +49,41 @@
 └── README.md
 ```
 
-## 运行方式
+## Getting Started
 
-1. 安装并打开微信开发者工具。
-2. 选择“导入项目”。
-3. 项目目录选择本仓库根目录。
-4. AppID 可填写自己的小程序 AppID，也可以使用测试号或游客模式。
-5. 点击“编译”后即可预览。
+1. Install and open WeChat Developer Tools.
+2. Choose "Import Project".
+3. Select the root directory of this repository.
+4. Use your own Mini Program AppID, a test AppID, or tourist mode.
+5. Click "Compile" to preview the app.
 
-## 数据存储
+## Data Storage
 
-当前版本使用微信小程序本地缓存保存数据：
+The current version stores data locally through WeChat Mini Program storage:
 
-- `planbook:v1`：保存日 / 周 / 月 / 年计划与记录
-- `planbook:checkins:v1`：保存每日打卡数据
+- `planbook:v1`: plans and reflection notes for day, week, month, and year views
+- `planbook:checkins:v1`: daily check-in data
 
-本地缓存适合个人原型和单设备使用。如果需要多设备同步，可以后续接入微信云开发或自建后端。
+Local storage is suitable for prototypes and single-device personal use. For multi-device sync, the app can later be connected to WeChat Cloud Development or a custom backend.
 
-## 设计方向
+## Design Direction
 
-界面强调低干扰、清晰层级和快速记录：
+The interface focuses on low-friction planning, clear hierarchy, and quick recording:
 
-- 顶部展示当前周期、完成进度和任务统计
-- 中部处理计划输入与任务列表
-- 打卡模块展示连续行动反馈
-- 记录区用于自由复盘和阶段总结
+- The top area shows the current period, completion progress, and task stats
+- The planning section keeps task input and the task list close together
+- The check-in section provides visible feedback for continuous action
+- The notes section gives users a quiet space for reflection
 
-## 后续规划
+## Roadmap
 
-- 增加计划优先级、标签和分类
-- 增加提醒时间与订阅消息
-- 增加复盘模板，例如“完成了什么 / 卡在哪里 / 下一步”
-- 增加今日首页，汇总年、月、周、日的当前重点
-- 支持云同步和多设备数据
-- 增加数据导出能力
+- Add task priority, tags, and categories
+- Add reminder time and subscription messages
+- Add reflection templates, such as "What was completed / What got stuck / Next step"
+- Add a Today dashboard that summarizes yearly, monthly, weekly, and daily priorities
+- Support cloud sync and multi-device usage
+- Add data export
 
 ## License
 
-目前未指定开源协议。如需公开协作，建议补充 MIT License 或其他合适的开源协议。
+No license has been specified yet. If this project is opened for collaboration, consider adding the MIT License or another suitable open source license.
